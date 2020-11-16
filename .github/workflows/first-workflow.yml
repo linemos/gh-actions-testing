@@ -1,0 +1,36 @@
+name: Testing build
+on:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  create-tag:
+    name: Get git tag for commit
+    runs-on: ubuntu-latest
+    outputs:
+      artifact_version: ${{ steps.artifact-version.outputs.version }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Create artifact version
+        id: artifact-version
+        uses: navikt/sosialhjelp-ci/actions/create-artifact-version@master
+  build:
+    name: Build and push docker image
+    needs: create-tag
+    runs-on: ubuntu-latest
+    outputs:
+      image_tag: ${{ steps.docker-tag.outputs.image_tag }}
+    env:
+      ARTIFACT_VERSION: ${{ needs.create-tag.outputs.artifact_version }}
+      DOCKER_IMAGE: docker.pkg.github.com/${{ github.repository }}/${{ github.event.repository.name }}
+    steps:
+      - name: Create docker image tags
+        run: |
+          echo "DOCKER_TAG=${{ env.DOCKER_IMAGE }}:${{ env.ARTIFACT_VERSION }}" >> $GITHUB_ENV
+      - name: Output docker image tag
+        id: docker-tag
+        run: |
+          echo "::set-output name=image_tag::${{ env.DOCKER_TAG }}"
