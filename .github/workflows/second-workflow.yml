@@ -21,4 +21,4 @@ jobs:
         uses: navikt/sosialhjelp-ci/actions/create-artifact-version@master
       - name: Output version
         run: |
-          echo "Artifact version: ${{ steps.artifact-version.outputs.version }}
+          echo "Artifact version: ${{ steps.artifact-version.outputs.version }}"
