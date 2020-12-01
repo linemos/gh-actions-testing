@@ -1,0 +1,24 @@
+name: Testing deploy
+on:
+  workflow_run:
+    workflows: ["Testing build"]
+    branches: [!main]
+    types:
+      - completed
+      - requested
+
+jobs:
+  deploy:
+    name: Deploy from not main
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy til GCP
+        run: |
+          echo "Github: ${{ github.event }}"
+      - uses: actions/checkout@v2
+      - name: Create artifact version
+        id: artifact-version
+        uses: navikt/sosialhjelp-ci/actions/create-artifact-version@master
+      - name: Output version
+        run: |
+          echo "Artifact version: ${{ steps.artifact-version.outputs.version }}"

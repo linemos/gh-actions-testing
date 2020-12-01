@@ -3,6 +3,14 @@ on:
   push:
     branches:
       - "main"
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Cluster to deploy to'
+        required: true
+        default: 'dev-sbs-intern'
+    outputs:
+      branch-name: ${{ github.event.inputs.environment }}
 
 jobs:
   create-tag:
