@@ -1,8 +1,8 @@
-name: Testing deploy
+name: tredje deploy
 on:
   workflow_run:
     workflows: ["Testing build"]
-    branches: [!main]
+    branches: '!main'
     types:
       - completed
       - requested
