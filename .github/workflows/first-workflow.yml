@@ -5,20 +5,6 @@ on:
       - "main"
 
   workflow_dispatch:
-    inputs:
-      environment:
-        description: 'Cluster to deploy to'
-        required: true
-        default: 'dev-sbs-intern'
-    outputs:
-      branch-name:
-        description: 'Cluster to deploy to'
-        required: true
-        default: 'test'
-      environment:
-        description: 'Cluster to deploy to'
-        required: true
-        default: 'dev-sbs-intern'
 
 jobs:
   create-tag:
