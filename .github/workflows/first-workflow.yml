@@ -10,7 +10,14 @@ on:
         required: true
         default: 'dev-sbs-intern'
     outputs:
-      branch-name: ${{ github.event.inputs.environment }}
+      branch-name:
+        description: 'Cluster to deploy to'
+        required: true
+        default: 'test'
+      environment:
+        description: 'Cluster to deploy to'
+        required: true
+        default: 'dev-sbs-intern'
 
 jobs:
   create-tag:
@@ -42,3 +49,7 @@ jobs:
         id: docker-tag
         run: |
           echo "::set-output name=image_tag::${{ env.DOCKER_TAG }}"
+      - name: Output environment to deploy to
+        id: output-environment
+        run: |
+          echo "::set-output name=environment::${{ github.event.inputs.environment }}"
