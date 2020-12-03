@@ -1,4 +1,4 @@
-name: Testing deploy
+name: After build we will deploy
 on:
   workflow_run:
     workflows: ["Testing build"]

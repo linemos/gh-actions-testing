@@ -1,4 +1,4 @@
-name: tredje deploy
+name: manuell deploy
 on:
   workflow_dispatch:
     inputs:
