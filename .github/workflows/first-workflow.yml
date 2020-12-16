@@ -5,6 +5,12 @@ on:
       - "main"
 
   workflow_dispatch:
+  repository_dispatch:
+    types: [test_input]
+    inputs:
+      config-file-name:
+      description: 'config-fil'
+      required: true
 
 jobs:
   create-tag:
@@ -29,6 +35,9 @@ jobs:
       ARTIFACT_VERSION: ${{ needs.create-tag.outputs.artifact_version }}
       DOCKER_IMAGE: docker.pkg.github.com/${{ github.repository }}/${{ github.event.repository.name }}
     steps:
+      - name: echo input
+        run: |
+          echo "Input er ${{ github.event.inputs.config-file-name }}"
       - name: Create docker image tags
         run: |
           echo "DOCKER_TAG=${{ env.DOCKER_IMAGE }}:${{ env.ARTIFACT_VERSION }}" >> $GITHUB_ENV
