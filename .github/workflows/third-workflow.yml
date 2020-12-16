@@ -21,8 +21,8 @@ jobs:
     steps:
       - name: set env
         run: |
-          echo "CLUSTER=${{ github.event.inputs.environment }}${{ github.event.client_payload.environment }} >> $GITHUB_ENV"
-          echo "CONFIG=${{ github.event.inputs.config-file-name }}${{ github.event.client_payload.config-file-name }} >> $GITHUB_ENV"
+          echo "CLUSTER=${{ github.event.inputs.environment }}${{ github.event.client_payload.environment }}" >> $GITHUB_ENV
+          echo "CONFIG=${{ github.event.inputs.config-file-name }}${{ github.event.client_payload.config-file-name }}" >> $GITHUB_ENV
       - name: echo input
         run: |
           echo "Input er ${{ github.event.inputs.config-file-name }}"
