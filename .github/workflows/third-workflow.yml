@@ -6,12 +6,22 @@ on:
         description: 'Cluster to deploy to'
         required: true
         default: 'dev-sbs-intern'
+      config-file-name:
+        description: 'Config file name'
+        required: true
+        default: 'filnavn'
+  repository_dispatch:
+    types: [test_input]
+
 
 jobs:
   deploy:
     name: Deploy from not main
     runs-on: ubuntu-latest
     steps:
+      - name: echo input
+        run: |
+          echo "Input er ${{ github.event.inputs.config-file-name }}"
       - name: Deploy til GCP
         run: |
           echo "Github: ${{ github.event }}"
