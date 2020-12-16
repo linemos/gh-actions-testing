@@ -3,14 +3,14 @@ on:
   push:
     branches:
       - "main"
-
   workflow_dispatch:
-  repository_dispatch:
-    types: [test_input]
     inputs:
       config-file-name:
       description: 'config-fil'
       required: true
+  repository_dispatch:
+    types: [test_input]
+
 
 jobs:
   create-tag:
