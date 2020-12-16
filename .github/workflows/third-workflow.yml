@@ -11,7 +11,7 @@ on:
         required: true
         default: 'filnavn'
   repository_dispatch:
-    types: [test_input]
+    types: [deploy_miljo_tag]
 
 
 jobs:
