@@ -28,7 +28,7 @@ jobs:
           echo "Input er ${{ github.event.inputs.config-file-name }}"
       - name: Deploy til GCP
         run: |
-          echo "Github: ${{ github.event }}"
+          echo "Github: ${{ github.event_name}}"
       - uses: actions/checkout@v2
       - name: Create artifact version
         id: artifact-version
