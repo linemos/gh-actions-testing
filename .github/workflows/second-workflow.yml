@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Deploy til GCP
         run: |
-          echo "Github: ${{ github.event.ref }}"
+          echo "Github: ${{ github.ref }}"
       - uses: actions/checkout@v2
       - name: Create artifact version
         id: artifact-version
