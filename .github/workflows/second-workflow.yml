@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Echo github.sha
         run: |
-          echo "Github sha: ${{ github.sha }}"
+          echo "Github sha: ${{ github.event.inputs.environment }}"
       - name: Echo GITHUB_SHA
         run: |
           echo "env ref: ${{ env.GITHUB_SHA }}"
