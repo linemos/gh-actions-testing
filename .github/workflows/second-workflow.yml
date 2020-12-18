@@ -18,7 +18,8 @@ jobs:
         run: |
           echo "env ref: ${{ env.ARTIFACT_VERSION }}"
       - uses: actions/checkout@v2
-        ref: ${{ github.sha }}
+        with:
+          ref: ${{ github.sha }}
       - name: Create artifact version
         id: artifact-version
         uses: navikt/sosialhjelp-ci/actions/create-artifact-version@master
