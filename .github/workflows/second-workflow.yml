@@ -11,9 +11,12 @@ jobs:
     name: Deploy to dev-gcp
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy til GCP
+      - name: Echo github.sha
         run: |
-          echo "Github: ${{ github.event.repository.commits_url }}"
+          echo "Github sha: ${{ github.sha }}"
+      - name: Echo github.sha
+        run: |
+          echo "env ref: ${{ env.ARIFACT_VERSION }}"
       - uses: actions/checkout@v2
       - name: Create artifact version
         id: artifact-version
