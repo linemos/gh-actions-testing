@@ -5,7 +5,7 @@ on:
     branches: [main]
     types:
       - completed
-      -
+
 jobs:
   deploy:
     name: Deploy to dev-gcp
@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Deploy til GCP
         run: |
-          echo "Github: ${{ github.event }}"
+          echo "Github: ${{ github.event.ref }}"
       - uses: actions/checkout@v2
       - name: Create artifact version
         id: artifact-version
