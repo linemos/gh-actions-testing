@@ -15,10 +15,11 @@ jobs:
     steps:
       - name: Echo github.
         run: |
-          echo "github.event.workflow_run.conclusion: ${{ github.event.workflow_run.conclusion }}"
+          echo "github.event.repository_dispatch: ${{ github.event.repository_dispatch }}"
       - name: Echo GITHUB_SHA
+        if: ${{ github.event.repository_dispatch || github.event.workflow_run.conclusion == 'success' }}
         run: |
-          echo "env ref: ${{ env.GITHUB_SHA }}"
+          echo "event_name : ${{ github.event_name }}"
       - uses: actions/checkout@v2
         with:
           ref: ${{ env.GITHUB_SHA }}
