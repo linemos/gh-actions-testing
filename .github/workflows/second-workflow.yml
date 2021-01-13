@@ -17,7 +17,7 @@ jobs:
         run: |
           echo "github.event.repository_dispatch: ${{ github.event.repository_dispatch }}"
       - name: Echo GITHUB_SHA
-        if: ${{ github.event.repository_dispatch || github.event.workflow_run.conclusion == 'success' }}
+        if: ${{ github.event_name == 'repository_dispatch' || github.event.workflow_run.conclusion == 'success' }}
         run: |
           echo "event_name : ${{ github.event_name }}"
       - uses: actions/checkout@v2
